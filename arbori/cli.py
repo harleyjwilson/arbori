@@ -7,15 +7,7 @@ from arbori.io import build_directory_structure, parse_input_file
 from arbori.tree import Tree
 
 
-def _get_version():
-    """Read version from pyproject.toml"""
-    pyproject_path = Path(__file__).parent.parent / "pyproject.toml"
-    with open(pyproject_path, "rb") as f:
-        data = tomllib.load(f)
-    return data["project"]["version"]
-
-
-@click.version_option(_get_version(), prog_name="arbori")
+@click.version_option(prog_name="arbori")
 @click.command(help="Create a directory structure given a simple input format")
 @click.argument("input", type=click.File("r"))
 @click.argument(
