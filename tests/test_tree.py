@@ -12,7 +12,7 @@ def test_invalid_node_value_fail():
     tree_input = ["root", "  child:1", "  child2"]
 
     with pytest.raises(
-        ValueError, match=f"Value 'child:1' contains illegal character ':'"
+        ValueError, match="Value 'child:1' contains illegal character ':'"
     ):
         Tree("root", tree_input)
 
