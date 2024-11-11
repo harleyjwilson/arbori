@@ -100,4 +100,4 @@ git checkout -b feature/new-feature
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for more details.
+This project is licensed under the MIT License - see the LICENSE file for more details. 
