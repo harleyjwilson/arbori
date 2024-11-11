@@ -93,6 +93,7 @@ git checkout -b feature/new-feature
 
 6. Submit a Pull Request:
 
+- GitHub Actions will lint, format, and test code
 - Ensure all tests pass
 - Update documentation if needed
 - Pull requests without tests will not be reviewed
