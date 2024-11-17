@@ -3,13 +3,58 @@ import pytest
 from arbori.tree import Tree
 
 
+def test_node_repr_single_node():
+    node = Tree.Node("root")
+    expected = "'root'\n"
+    assert repr(node) == expected
+
+
+def test_node_repr_with_children():
+    """Test string representation of a node with children"""
+    root = Tree.Node("root")
+    child1 = Tree.Node("child1")
+    child2 = Tree.Node("child2")
+    root.add_child(child1)
+    root.add_child(child2)
+
+    expected = "'root'\n" + " 'child1'\n" + " 'child2'\n"
+    assert repr(root) == expected
+
+
+def test_tree_repr_empty():
+    tree = Tree("root", [])
+    expected = "'root'\n"
+    assert repr(tree) == expected
+
+
+def test_tree_repr_with_children():
+    tree_input = [
+        "parent",
+        " child1",
+        " child2",
+        "  grandchild1",
+        "  grandchild2",
+    ]
+
+    tree = Tree("root", tree_input)
+    expected = (
+        "'root'\n"
+        + " 'parent'\n"
+        + "  'child1'\n"
+        + "  'child2'\n"
+        + "   'grandchild1'\n"
+        + "   'grandchild2'\n"
+    )
+    assert repr(tree) == expected
+
+
 def test_empty_input_fail():
     with pytest.raises(ValueError, match="Root cannot be empty"):
         Tree(None, [])
 
 
 def test_invalid_node_value_fail():
-    tree_input = ["root", "  child:1", "  child2"]
+    tree_input = ["root", " child:1", " child2"]
 
     with pytest.raises(
         ValueError, match="Value 'child:1' contains illegal character ':'"
@@ -38,11 +83,11 @@ def test_root_with_one_child_pass():
 def test_complicated_tree_pass():
     tree_input = [
         "parent",
-        "  child1",
-        "    grandchild1",
-        "      greatgrandchild1",
-        "    grandchild2",
-        "  child2",
+        " child1",
+        "  grandchild1",
+        "   greatgrandchild1",
+        "  grandchild2",
+        " child2",
     ]
 
     tree = Tree("root", tree_input)

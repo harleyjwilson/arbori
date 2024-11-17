@@ -19,6 +19,19 @@ def test_parse_input_file_invalid_indent_fail():
     input_content = """
 root
    child1
+     grandchild1
+    """
+
+    with pytest.raises(ValueError):
+        parse_input_file(input_content)
+
+
+def test_parse_input_file_invalid_indent_two_fail():
+    input_content = """
+root
+  child1
+     grandchild1
+  child2
     """
 
     with pytest.raises(ValueError):
@@ -38,7 +51,7 @@ child1
     assert result == ["root", "child1"]
 
 
-def test_parse_input_file_pass():
+def test_parse_input_file_indent_two_spaces_pass():
     input_content = """
 root
   child1
@@ -48,7 +61,20 @@ root
 
     result = parse_input_file(input_content)
 
-    assert result == ["root", "  child1", "    grandchild1", "  child2"]
+    assert result == ["root", " child1", "  grandchild1", " child2"]
+
+
+def test_parse_input_file_indent_four_spaces_pass():
+    input_content = """
+root
+    child1
+        grandchild1
+    child2
+    """
+
+    result = parse_input_file(input_content)
+
+    assert result == ["root", " child1", "  grandchild1", " child2"]
 
 
 def test_create_folders_from_tree_empty_tree_pass(tmp_path):
