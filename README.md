@@ -45,12 +45,10 @@ Will generate the following folders.
 
 ## Installation
 
-Clone the repository and install using pip:
+Install from PyPI:
 
 ```bash
-git clone https://github.com/harleyjwilson/arbori.git
-cd arbori
-pip install .
+pip install arbori
 ```
 
 ## Usage
@@ -65,7 +63,7 @@ arbori input.txt output/directory/
 
 Contributions are welcome! Here's how to get started:
 
-1. Fork the repository
+1. Fork and clone the repository
 2. Set up your Python virtual environment
 
 ```bash
