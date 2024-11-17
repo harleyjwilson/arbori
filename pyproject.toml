@@ -1,6 +1,6 @@
 [project]
 name = "arbori"
-version = "0.1.0"
+version = "0.1.1"
 description = "Create a directory structure given a simple input format."
 readme = "README.md"
 license = { text = "MIT License" }
