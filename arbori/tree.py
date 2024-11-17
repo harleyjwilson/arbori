@@ -40,14 +40,15 @@ class Tree:
             return Tree.Node(root_value)
 
         def get_depth(line):
-            """Calculate the depth level based on leading spaces (2 spaces = 1 level)"""
-            return (len(line) - len(line.lstrip()))
+            """
+            Calculate the depth level based on leading spaces (1 spaces = 1 level)
+            This is parsed to this requirement via the io.py:parse_input_file function
+            """
+            return len(line) - len(line.lstrip())
 
         def build_subtree(lines, start_idx, parent_depth):
             """Recursively build subtrees for each node"""
-            if start_idx >= len(lines):
-                return None, start_idx
-
+            assert start_idx < len(lines)
             node = Tree.Node(lines[start_idx].strip())
             current_idx = start_idx + 1
 
@@ -57,15 +58,11 @@ class Tree:
                 if current_depth <= parent_depth:
                     break
 
-                if current_depth == parent_depth + 1:
-                    child_node, new_idx = build_subtree(
-                        lines, current_idx, current_depth
-                    )
-                    if child_node:
-                        node.add_child(child_node)
-                    current_idx = new_idx
-                else:
-                    current_idx += 1
+                assert current_depth == parent_depth + 1
+                child_node, new_idx = build_subtree(lines, current_idx, current_depth)
+                if child_node:
+                    node.add_child(child_node)
+                current_idx = new_idx
 
             return node, current_idx
 
@@ -73,12 +70,10 @@ class Tree:
         current_idx = 0
 
         while current_idx < len(lines):
-            if get_depth(lines[current_idx]) == 0:
-                child_node, new_idx = build_subtree(lines, current_idx, 0)
-                if child_node:
-                    root.add_child(child_node)
-                current_idx = new_idx
-            else:
-                current_idx += 1
+            assert get_depth(lines[current_idx]) == 0
+            child_node, new_idx = build_subtree(lines, current_idx, 0)
+            if child_node:
+                root.add_child(child_node)
+            current_idx = new_idx
 
         return root
