@@ -9,7 +9,7 @@ def test_empty_input_fail():
 
 
 def test_invalid_node_value_fail():
-    tree_input = ["root", "  child:1", "  child2"]
+    tree_input = ["root", " child:1", " child2"]
 
     with pytest.raises(
         ValueError, match="Value 'child:1' contains illegal character ':'"
@@ -38,11 +38,11 @@ def test_root_with_one_child_pass():
 def test_complicated_tree_pass():
     tree_input = [
         "parent",
-        "  child1",
-        "    grandchild1",
-        "      greatgrandchild1",
-        "    grandchild2",
-        "  child2",
+        " child1",
+        "  grandchild1",
+        "   greatgrandchild1",
+        "  grandchild2",
+        " child2",
     ]
 
     tree = Tree("root", tree_input)

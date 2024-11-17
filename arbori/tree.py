@@ -6,7 +6,7 @@ class Tree:
             self.children = []
 
         def __repr__(self, level=0):
-            ret = "  " * level + repr(self.value) + "\n"
+            ret = " " * level + repr(self.value) + "\n"
             for child in self.children:
                 ret += child.__repr__(level + 1)
             return ret
@@ -41,7 +41,7 @@ class Tree:
 
         def get_depth(line):
             """Calculate the depth level based on leading spaces (2 spaces = 1 level)"""
-            return (len(line) - len(line.lstrip())) // 2
+            return (len(line) - len(line.lstrip()))
 
         def build_subtree(lines, start_idx, parent_depth):
             """Recursively build subtrees for each node"""
