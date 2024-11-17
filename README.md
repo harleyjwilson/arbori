@@ -75,7 +75,7 @@ source .venv/bin/activate
 
 ```bash
 pip install .
-pip install -e '.[dev]'
+pip install -e '.[test]'
 ```
 
 4. Create your feature branch
